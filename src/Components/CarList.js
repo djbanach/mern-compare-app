@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Compare from './Compare';
 
 const Car = props => (
-    <tr>
+    <tr className={props.car.selected ? 'selected' : ''}>
         <td>{props.car.car_make}</td>
         <td>{props.car.car_model}</td>
         <td>
-            <Link to={"/cars/"+props.car._id}>Compare</Link>
+            <button className="btn btn-primary" name="compare" onClick={this.getSelectedCar()}>Compare</button>
         </td>
     </tr>
 )
@@ -17,7 +18,12 @@ class CarList extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {cars: []};
+        this.getSelectedCar = this.getSelectedCar.bind(this);
+
+        this.state = {
+            selectedCar: [],
+            cars: []
+        };
     }
 
     componentDidMount() {
@@ -30,9 +36,28 @@ class CarList extends Component {
         })
     }
 
+    // componentWillMount(e) {
+    //     axios.get('http://localhost:4000/cars/'+this.state.cars._id)
+    //     .then(res => {
+    //         this.setState({
+    //             selectedCar: res.data
+    //         })
+    //     })
+    // }
+
     carList() {
         return this.state.cars.map(function(currentCar, i) {
             return <Car car={currentCar} key={i} />;
+        })
+    }
+
+    getSelectedCar(e) {
+        // const id = e.target.elements.compare.value;
+        axios.get('http://localhost:4000/cars/'+this.state.cars._id)
+        .then(res => {
+            this.setState({
+                selectedCar: res.data
+            })
         })
     }
 
@@ -52,6 +77,9 @@ class CarList extends Component {
                         { this.carList() }
                     </tbody>
                 </table>
+                <div className="col-xs-4">
+                    <Compare car={this.selectedCar} />
+                </div>
             </div>
         );
     }

@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import CarList from './Components/CarList';
 import CarCreate from './Components/CarCreate';
-/*import Compare from './Components/Compare';*/
+// import Compare from './Components/Compare';
 
 class App extends Component {
   render() {
@@ -27,6 +27,7 @@ class App extends Component {
           <br/>
           <Route path="/" exact component={CarList} />
           <Route path="/create" component={CarCreate} />
+          {/* <Route path="/" component={Compare} /> */}
         </div>
       </Router>
     );

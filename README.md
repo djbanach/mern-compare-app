@@ -1,3 +1,22 @@
+## Summary
+
+This is a CRUD react application utilizing the MERN stack. The app lists a selection of cars that it gets from a mongodb and has a second page where you can create a new car to add to the list. It also has a function where you can compare cars by pressing a button inside the table of cars.
+
+## What I learned
+
+- More react basics
+- Using Mongodb, node.js, express
+- Creating my on server/db
+- More bootstrap
+- Connecting a back and front end together
+- Rest API requests
+
+## Todo
+
+- [] Finish compare component
+- [] Added photos and more stats to each car
+- [] Change table of cars into bootstraps cards
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

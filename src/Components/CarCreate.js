@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class CarCreate extends Component {
 
@@ -52,6 +53,16 @@ class CarCreate extends Component {
         console.log(`Car Model: ${this.state.car_model}`);
         console.log(`Car Description: ${this.state.car_description}`);
         console.log(`Car MPG: ${this.state.car_mpg}`);
+
+        const newCar = {
+            car_make: this.state.car_make,
+            car_model: this.state.car_model,
+            car_description: this.state.car_description,
+            car_mpg: this.state.car_mpg,
+            selected: this.state.selected
+        };
+
+        axios.post('http://localhost:4000/cars/add', newCar).then(res => console.log(res.data));
 
         this.setState({
             car_make: '',
